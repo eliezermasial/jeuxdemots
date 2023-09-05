@@ -25,10 +25,12 @@ function lencerJeux(){
                 let check = optionSource[y].value
                 
                 if(check === "1"){
-                    affiche()
+                    afficherMots()
+                    optionSource[y].disabled = true;
                     console.log("bienvenu")
                 } else{
-                    console.log(check)
+                    afficherPhrase()
+                    optionSource[y].disabled = true
                 }
             }
         })
@@ -36,27 +38,44 @@ function lencerJeux(){
     }
 }
 
+function afficherPhrase(){
+    zoneProposition.innerHTML = listesPhrases[i++]
 
-function affiche(){
+    button.addEventListener("click",()=>{
+    
+        zoneProposition.innerHTML = listesPhrases[i++]
+    
+        if(zoneProposition.innerHTML === "undefined"){
+
+            zoneProposition.innerHTML = "le jeux est fini"
+            zoneScore.innerHTML = `${score}/${listesPhrases.length}`
+            button.disabled = true;
+            
+        }
+
+        score++
+    })
+}
+
+function afficherMots(){
 
     zoneProposition.innerHTML = listesMots[i++]
     
     // action effectuer par le button
-        
-        button.addEventListener("click",()=>{
+    button.addEventListener("click",()=>{
     
-            zoneProposition.innerHTML = listesMots[i++]
+        zoneProposition.innerHTML = listesMots[i++]
         
-            if(zoneProposition.innerHTML === "undefined"){
-                zoneProposition.innerHTML = "le jeux est fini"
-                zoneScore.innerHTML = `${score}/${listesMots.length}`
-                button.disabled = true;
+        if(zoneProposition.innerHTML === "undefined"){
+            zoneProposition.innerHTML = "le jeux est fini"
+            zoneScore.innerHTML = `${score}/${listesMots.length}`
+            button.disabled = true;
                 
-            }
+        }
     
-            score++
-            
-        })
+        score++      
+    })
+
 }
     
 

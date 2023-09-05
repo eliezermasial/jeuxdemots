@@ -80,3 +80,28 @@ function lencerLejeux(){
 }
 
 
+
+
+
+/*
+for(let i=0; i < listesMots.length; i++){
+    let deviner = prompt("entrer le mot")
+    zoneProposition.innerHTML = listesMots[i]
+
+    console.log(zoneProposition)
+
+    if(deviner === listesMots[i]){
+
+        
+        const zoneScore = document.querySelector(" .zoneScore span")
+        
+        zoneScore.innerHTML = `${score}/${nombreEntrer}`
+        
+        console.log(zoneProposition)
+        
+        
+    } else{
+        console.log("desole")
+    }
+    score++
+} */
