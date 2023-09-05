@@ -1,0 +1,82 @@
+
+
+let utilisateur= prompt("voulez vous la liste de mot ou de phrase")
+
+
+if(utilisateur === "mot") {
+
+    for(let i = 0; i < listesMots.length;i++){
+
+        let motUtilisateur = prompt("entrer le mot")
+
+        if(motUtilisateur === listesMots[i]){
+
+            score++
+        }
+    }
+
+} else if(utilisateur == "phrase") {
+
+    for(let i = 0; i < listPhrase.length;i++) {
+
+        let motUtilisateur = prompt("entrer votre phrase")
+
+        if(motUtilisateur === listPhrase[i]) {
+            score++
+        }
+    }
+
+} else {
+
+    console.log("desolée vous etes hors jeux")
+
+}
+
+console.log("votre score est de" + " "+ score+" "+"sur 3")
+
+
+
+function afficherResultat(score){
+    const zoneScore = document.querySelector(".zoneScore span")
+    return zoneScore.innerText = `${score}/${3}`
+}
+
+function affichageProposition(proposition){
+    let zoneProposition = document.querySelector(" .zoneProposition")
+        zoneProposition.innerHTML = proposition
+        
+}
+
+function lencerLejeux(){
+    const button = document.querySelector("button")
+    let score = 0
+    let i= 0
+    if(inputEcriture.value === listesMots[i]) {
+        score++
+    }
+    i++
+    afficherResultat(score, i)
+    affichageProposition(listesMots[i])
+
+    button.addEventListener("click",()=>{
+
+        inputEcriture.value = " "
+
+        i++
+
+        if(listesMots[i] === undefined) {
+            affichageProposition("le jeux est fini")
+           return button.disabled= true
+
+        } else{
+
+            affichageProposition(listesMots[i])
+        }
+
+        afficherResultat(score, i)
+    })
+
+    
+}
+
+
