@@ -1,107 +1,35 @@
-
-
-let utilisateur= prompt("voulez vous la liste de mot ou de phrase")
-
-
-if(utilisateur === "mot") {
-
-    for(let i = 0; i < listesMots.length;i++){
-
-        let motUtilisateur = prompt("entrer le mot")
-
-        if(motUtilisateur === listesMots[i]){
-
-            score++
-        }
-    }
-
-} else if(utilisateur == "phrase") {
-
-    for(let i = 0; i < listPhrase.length;i++) {
-
-        let motUtilisateur = prompt("entrer votre phrase")
-
-        if(motUtilisateur === listPhrase[i]) {
-            score++
-        }
-    }
-
-} else {
-
-    console.log("desolée vous etes hors jeux")
-
-}
-
-console.log("votre score est de" + " "+ score+" "+"sur 3")
-
-
-
-function afficherResultat(score){
-    const zoneScore = document.querySelector(".zoneScore span")
-    return zoneScore.innerText = `${score}/${3}`
-}
-
-function affichageProposition(proposition){
-    let zoneProposition = document.querySelector(" .zoneProposition")
-        zoneProposition.innerHTML = proposition
-        
-}
-
-function lencerLejeux(){
-    const button = document.querySelector("button")
-    let score = 0
-    let i= 0
-    if(inputEcriture.value === listesMots[i]) {
-        score++
-    }
-    i++
-    afficherResultat(score, i)
-    affichageProposition(listesMots[i])
-
+/*
+//cette fonction execute la liste des phrases si l'utilisateur choisi de jouer sur les phrases
+function afficherPhrase(){
+    zoneProposition.innerHTML = listesPhrases[i++]
+    afficherScore(score)
+    
+    // action effectuer par le button
     button.addEventListener("click",()=>{
+        zoneSaisie.value = " "
+        if(zoneSaisie.value.length){
 
-        inputEcriture.value = " "
-
-        i++
-
-        if(listesMots[i] === undefined) {
-            affichageProposition("le jeux est fini")
-           return button.disabled= true
+            console.log("bonjour masiala")
+            afficherScore(score++)
 
         } else{
-
-            affichageProposition(listesMots[i])
+            console.log("ecris quelque chose")
+        }
+        zoneSaisie.value = " "
+        /* else{
+            console.log("desole eliezer arranger le chose")
         }
 
-        afficherResultat(score, i)
+        zoneProposition.innerHTML = listesPhrases[i++]
+        zoneSaisie.value = " "
+
+        //cette condiion verifie si la valeur de zoneProposition egal nul pour stoper le jeux
+        if(zoneProposition.innerHTML === "undefined"){
+
+            zoneProposition.innerHTML = "le jeux est fini"      
+            button.disabled = true; //desactivation de l'evenement
+
+        } 
     })
 
-    
-}
-
-
-
-
-
-/*
-for(let i=0; i < listesMots.length; i++){
-    let deviner = prompt("entrer le mot")
-    zoneProposition.innerHTML = listesMots[i]
-
-    console.log(zoneProposition)
-
-    if(deviner === listesMots[i]){
-
-        
-        const zoneScore = document.querySelector(" .zoneScore span")
-        
-        zoneScore.innerHTML = `${score}/${nombreEntrer}`
-        
-        console.log(zoneProposition)
-        
-        
-    } else{
-        console.log("desole")
-    }
-    score++
 } */

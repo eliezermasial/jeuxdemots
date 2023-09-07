@@ -59,41 +59,7 @@ function lencerJeux(){
     } 
 }
 
-/*
-//cette fonction execute la liste des phrases si l'utilisateur choisi de jouer sur les phrases
-function afficherPhrase(){
-    zoneProposition.innerHTML = listesPhrases[i++]
-    afficherScore(score)
-    
-    // action effectuer par le button
-    button.addEventListener("click",()=>{
-        zoneSaisie.value = " "
-        if(zoneSaisie.value.length){
 
-            console.log("bonjour masiala")
-            afficherScore(score++)
-
-        } else{
-            console.log("ecris quelque chose")
-        }
-        zoneSaisie.value = " "
-        /* else{
-            console.log("desole eliezer arranger le chose")
-        }
-
-        zoneProposition.innerHTML = listesPhrases[i++]
-        zoneSaisie.value = " "
-
-        //cette condiion verifie si la valeur de zoneProposition egal nul pour stoper le jeux
-        if(zoneProposition.innerHTML === "undefined"){
-
-            zoneProposition.innerHTML = "le jeux est fini"      
-            button.disabled = true; //desactivation de l'evenement
-
-        } 
-    })
-
-} */
 
 //cette fonction execute la liste de mots si l'utilisateur choisi de jouer avec les mots
 function afficherMots(){
