@@ -185,12 +185,28 @@ footer {
     font-size: 20px;
 }
 
+.zonebtn .btn{
+    display: none;
+    font-size: 15px;
+    background-color: antiquewhite;
+    color: #f68e5f ;
+    box-shadow: none;
+}
+
 /**
   * Gestion des popups
   */
 
   .popupBackground {
     display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.affichagePopup {
+    display: block;
     position: fixed;
     height: 100vh;
     width: 100vw;

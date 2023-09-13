@@ -1,0 +1,9 @@
+
+        //cette condiion verifie si la valeur de zoneProposition egal nul pour stoper le jeux
+        if(zoneProposition.innerHTML === "undefined"){
+
+            zoneProposition.innerHTML = "le jeux est fini"  
+            zoneSaisie.disabled = true    
+            button.disabled = true; //desactivation de l'evenement
+
+        } 
