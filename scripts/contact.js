@@ -18,8 +18,10 @@ function afficherScore(){
 }
 
 /*****************************************************************************************
+ * 
  * cette fonction affiche le btnPartgaer,
  * affiche la formulaire de partage et ca desactive aussi la formu par event double clique
+ * 
  * ***************************************************************************************/
 
 function buttonPartager(){
@@ -44,8 +46,10 @@ function buttonPartager(){
 
 
 /*************************************************
+* 
 * cette fonction execute la liste de mots
 * si l'utilisateur choisi de jouer avec les mots
+*
 ***********************************************/
 function afficherMots(){
 
@@ -87,7 +91,10 @@ function afficherMots(){
  
  }
 
-
+ /*******************************
+  * la gestion d'execution du jeu
+  * 
+  */
 function lencerJeux(){
     afficherMots()
      
