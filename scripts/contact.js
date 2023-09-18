@@ -93,7 +93,7 @@ function afficherPhrase(){
  * cette fonction execute le jeu
  *******************************/
 function lencerJeu(){
-    
+    afficherMots()
     afficherScore(score)
     
     for(let y = 0; y < optionbtnRadio.length; y++){
@@ -110,9 +110,10 @@ function lencerJeu(){
                 console.log(e.target.value)
                 
             } else{
+                /*
                 afficherPhrase()
                 console.log("hdihszkidihd")
-                optionbtnRadio[y].disabled = true
+                optionbtnRadio[y].disabled = true */
             }
         })
         
