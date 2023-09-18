@@ -1,133 +1,120 @@
+let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]') 
 
-// les variables qu'on peut initialiser
-let zoneProposition = document.querySelector(".zoneProposition")
+//les variables a incrumenter
+let i = 0
+let j = 0
+let score = 0
 
-let button = document.getElementById("btnValiderMot")
-let optionSourceBtnradio = document.querySelectorAll(`input[name="optionSource"]`)
-
-
-// les  variables a incrumenter
-let score = 0;
-let i = 0;
-let couleur= ""
-
-// cette function est celle qui affiche le score du jeux
+// gestion d'affichage de score du jeu
 function afficherScore(){
-    let zoneScore = document.querySelector(".zoneScore span")
-    zoneScore.innerHTML = `${score}/${4}`
+    let zoneafficherScore = document.querySelector(" .zoneScore span")
+
+    return zoneafficherScore.innerHTML = `${score}/${4}`
 }
 
-/*****************************************************************************************
- * 
- * cette fonction affiche le btnPartgaer,
- * affiche la formulaire de partage et ca desactive aussi la formu par event double clique
- * 
- * ***************************************************************************************/
-
-function buttonPartager(){
-    btnPartager.style.display = "block"
-
-    btnPartager.addEventListener("click",(e)=>{
-        if(btnPartager.click){
-            console.log("felicitation")
-            let formulairePartager = document.querySelector(" .popupBackground")
-            formulairePartager.classList.remove("popupBackground")
-            formulairePartager.classList.add("affichagePopup")
-
-            body.addEventListener("dblclick",()=>{
-                console.log("bonjourkjffj")
-                formulairePartager.classList.remove("affichagePopup")
-                formulairePartager.classList.add("popupBackground")
-            })
-            
-        }
-    })
-} 
-
-
 /*************************************************
-* 
+* gestion des mots
 * cette fonction execute la liste de mots
 * si l'utilisateur choisi de jouer avec les mots
 *
 ***********************************************/
-function afficherMots(){
-
+function afficherMots() {
     zoneProposition.innerHTML = listesMots[i++]
-     afficherScore(score)
-     
-     // action effectuer par le button
-     
-     button.addEventListener("click",()=>{
-
-        if(zoneSaisie.value){
- 
-            console.log(zoneSaisie.value)
-            console.log(zoneProposition.textContent)
-            afficherScore(score++)
-            
-        } else{
-
-            console.log("ce code ne marche pas elie")
-            
-        }
-         
-         zoneProposition.innerHTML = listesMots[i++]
-         zoneSaisie.value = " "
-         zoneSaisie.focus()
-
-         //cette condiion verifie si la valeur de zoneProposition egal nul pour stoper le jeux
-        if(zoneProposition.innerHTML === "undefined"){
- 
-             zoneProposition.innerHTML = "le jeux est fini"  
-             zoneSaisie.disabled = true    
-             button.disabled = true; //desactivation de l'evenement
-
-             buttonPartager()
-
-         } 
-         
-     })
- 
- }
-
- /*******************************
-  * la gestion d'execution du jeu
-  * 
-  */
-function lencerJeux(){
-    afficherMots()
-     
-     
-    for(let y = 0; y < optionSourceBtnradio.length; y++){
-
-        optionSourceBtnradio[y].addEventListener("change",(e)=>{
+    inputEcriture.focus()
     
-            // cette condition verifie sur quel button radion se deroule l'evenement
-            if(e.target.value === "1"){
-                
-                afficherMots()
-                optionSourceBtnradio[y].disabled = true;
-                console.log("elizer")
-                afficherScore(score++)
-                
-            } else {
-                zoneProposition.innerHTML = "en pause"
-                /*
-                afficherPhrase()
-                optionSourceBtnradio[y].disabled = true;
-                console.log("tambalelele")  */
-                console.log("tamba")
-                optionSourceBtnradio[y].disabled = true
+
+    btnValider.addEventListener("click",(e)=>{
+        if(zoneProposition.innerHTML === inputEcriture.value){
+            console.log("felicitation")
+            console.log(zoneafficherScore)
+            
+            afficherScore(score++)
+            zoneProposition.innerHTML = listesMots[i++]
+            inputEcriture.value = ""
+            inputEcriture.focus()
+
+            if(zoneProposition.innerHTML === "undefined"){
+                zoneProposition.innerHTML = "le jeu est fini"
+
+                //desactivation btnvalide
+                inputEcriture.disabled = true
+                btnValider.disabled = true
             }
-        })
+
+        } else{
+            console.log("desole")
+        }
         
-    } 
+    })
+    
 }
 
 
+/*************************************************
+* gestion des mots
+* cette fonction execute la liste de mots
+* si l'utilisateur choisi de jouer avec les mots
+*
+***********************************************/
+function afficherPhrase(){
+    zoneProposition.innerHTML = listesPhrases[j]
+    inputEcriture.focus()
 
+    btnValider.addEventListener("click",()=>{
+        if(zoneProposition.innerHTML === inputEcriture.value){
 
+            afficherPhrase(j++)
+            afficherScore(score++)
+            inputEcriture.value = ""
 
+            if (zoneProposition.innerHTML === "undefined") {
+                zoneProposition.innerHTML = "le jeu est fini"
 
+                //desactivation btnvalide
+                inputEcriture.disabled = true
+                btnValider.disabled = true
 
+            } else{
+                console.log("le jeu continu")
+            }
+
+        } else{
+            console.log('tambadesol')
+        }
+        
+        
+
+      
+    })
+}
+
+/*******************************
+ * gestion du jeu
+ * cette fonction execute le jeu
+ *******************************/
+function lencerJeu(){
+    
+    afficherScore(score)
+    
+    for(let y = 0; y < optionbtnRadio.length; y++){
+        
+
+        //ici on est ecoute l'event change de btnRadio
+        optionbtnRadio[y].addEventListener("change",(e)=>{
+            
+            if(e.target.value === "1"){
+
+                afficherMots()
+                
+                optionbtnRadio[y].disabled = true
+                console.log(e.target.value)
+                
+            } else{
+                afficherPhrase()
+                console.log("hdihszkidihd")
+                optionbtnRadio[y].disabled = true
+            }
+        })
+        
+    }
+}

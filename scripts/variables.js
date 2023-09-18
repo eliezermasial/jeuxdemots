@@ -1,6 +1,8 @@
 // les constants necessaires utilisés pour le jeu
 const body = document.querySelector("body")
 const listesMots = ["poulet","elie","tamba","masiala"]
-const listesPhrases = ["vient manger","pourquoi tu es triste","vas a l'ecole","a quel heure viendras-tu"]
-const zoneSaisie = document.querySelector(".zoneSaisie input")
-const btnPartager = document.getElementById("btnPartager")
+const listesPhrases = ["je mange","je pars","je me lave","je nage"]
+const inputEcriture = document.getElementById("inputEcriture")
+const btnValider = document.getElementById("btnValiderMot")
+const zoneProposition = document.getElementById("zoneProposition")
+const zoneafficherScore = document.querySelector(" .zoneScore span")
