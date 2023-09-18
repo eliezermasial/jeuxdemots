@@ -50,43 +50,6 @@ function afficherMots() {
 }
 
 
-/*************************************************
-* gestion des mots
-* cette fonction execute la liste de mots
-* si l'utilisateur choisi de jouer avec les mots
-*
-***********************************************/
-function afficherPhrase(){
-    zoneProposition.innerHTML = listesPhrases[j]
-    inputEcriture.focus()
-
-    btnValider.addEventListener("click",()=>{
-        if(zoneProposition.innerHTML === inputEcriture.value){
-
-            afficherPhrase(j++)
-            afficherScore(score++)
-            inputEcriture.value = ""
-
-            if (zoneProposition.innerHTML === "undefined") {
-                zoneProposition.innerHTML = "le jeu est fini"
-
-                //desactivation btnvalide
-                inputEcriture.disabled = true
-                btnValider.disabled = true
-
-            } else{
-                console.log("le jeu continu")
-            }
-
-        } else{
-            console.log('tambadesol')
-        }
-        
-        
-
-      
-    })
-}
 
 /*******************************
  * gestion du jeu
@@ -110,10 +73,8 @@ function lencerJeu(){
                 console.log(e.target.value)
                 
             } else{
-                /*
-                afficherPhrase()
-                console.log("hdihszkidihd")
-                optionbtnRadio[y].disabled = true */
+                zoneProposition.innerHTML = "en pause"
+                optionbtnRadio[y].disabled = true
             }
         })
         
