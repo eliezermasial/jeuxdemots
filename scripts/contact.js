@@ -2,14 +2,36 @@ let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]')
 
 //les variables a incrumenter
 let i = 0
-let j = 0
 let score = 0
 
 // gestion d'affichage de score du jeu
 function afficherScore(){
     let zoneafficherScore = document.querySelector(" .zoneScore span")
-
     return zoneafficherScore.innerHTML = `${score}/${4}`
+}
+
+/*****************************************************************************************
+ * cette fonction affiche le btnPartgaer,
+ * affiche la formulaire de partage et ca desactive aussi la formu par event double clique
+ * ***************************************************************************************/
+function afficherbtnPartager(){
+    btnPartager.style.display = 'block'
+
+    btnPartager.addEventListener("click",(e)=>{
+
+        let formulairePartager = document.querySelector(" .popupBackground")
+        if(btnPartager.click){
+            formulairePartager.classList.remove("popupBackground")
+            formulairePartager.classList.add("affichagePopup")
+
+            body.addEventListener("dblclick",()=>{
+                formulairePartager.classList.remove("affichagePopup")
+                formulairePartager.classList.add("popupBackground")
+            })
+        }
+     
+    })
+    
 }
 
 /*************************************************
@@ -23,10 +45,8 @@ function afficherMots() {
     inputEcriture.focus()
     
 
-    btnValider.addEventListener("click",(e)=>{
+    btnValider.addEventListener("click",()=>{
         if(zoneProposition.innerHTML === inputEcriture.value){
-            console.log("felicitation")
-            console.log(zoneafficherScore)
             
             afficherScore(score++)
             zoneProposition.innerHTML = listesMots[i++]
@@ -39,6 +59,7 @@ function afficherMots() {
                 //desactivation btnvalide
                 inputEcriture.disabled = true
                 btnValider.disabled = true
+                afficherbtnPartager()
             }
 
         } else{
