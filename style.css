@@ -193,6 +193,24 @@ footer {
     box-shadow: none;
 }
 
+/* message d'erreur */
+.msError {
+    display: none;
+    margin-bottom: 10px;
+}
+.affichermsError {
+    display: block;
+}
+
+.msError span {
+    color: red;
+    font-weight: 700;
+}
+
+.mserrorInput{
+    border: 1px solid red !important;
+}
+
 /**
   * Gestion des popups
   */

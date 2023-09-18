@@ -1,5 +1,6 @@
 let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]') 
 
+
 //les variables a incrumenter
 let i = 0
 let score = 0
@@ -8,6 +9,26 @@ let score = 0
 function afficherScore(){
     let zoneafficherScore = document.querySelector(" .zoneScore span")
     return zoneafficherScore.innerHTML = `${score}/${4}`
+}
+
+//affichager message d'erreur
+function affichermessageErreur(){
+    let messageError = document.getElementById('msError')
+
+    return (
+        inputEcriture.classList.add("mserrorInput"),
+        messageError.classList.add("affichermsError")
+        
+    )
+}
+//desactiver le message d'erreur
+function desactivermessageErreur(){
+    let messageError = document.getElementById('msError')
+
+    return (
+        messageError.classList.remove("affichermsError"),
+        inputEcriture.classList.remove("mserrorInput")
+    )
 }
 
 /*****************************************************************************************
@@ -34,11 +55,11 @@ function afficherbtnPartager(){
     
 }
 
+
 /*************************************************
 * gestion des mots
 * cette fonction execute la liste de mots
 * si l'utilisateur choisi de jouer avec les mots
-*
 ***********************************************/
 function afficherMots() {
     zoneProposition.innerHTML = listesMots[i++]
@@ -46,30 +67,38 @@ function afficherMots() {
     
 
     btnValider.addEventListener("click",()=>{
-        if(zoneProposition.innerHTML === inputEcriture.value){
+        if(inputEcriture.value.length){
+            if(zoneProposition.innerHTML === inputEcriture.value){
             
-            afficherScore(score++)
-            zoneProposition.innerHTML = listesMots[i++]
-            inputEcriture.value = ""
-            inputEcriture.focus()
-
-            if(zoneProposition.innerHTML === "undefined"){
-                zoneProposition.innerHTML = "le jeu est fini"
-
-                //desactivation btnvalide
-                inputEcriture.disabled = true
-                btnValider.disabled = true
-                afficherbtnPartager()
+                afficherScore(score++)
+                zoneProposition.innerHTML = listesMots[i++]
+                inputEcriture.value = ""
+                desactivermessageErreur()
+                inputEcriture.focus()
+    
+                if(zoneProposition.innerHTML === "undefined"){
+                    zoneProposition.innerHTML = "le jeu est fini"
+    
+                    //desactivation btnvalide
+                    inputEcriture.disabled = true
+                    btnValider.disabled = true
+                    afficherbtnPartager()
+                }
+    
+            } else{
+                affichermessageErreur()
+                
             }
 
         } else{
-            console.log("desole")
+            inputEcriture.focus()
+            return alert("veuillez saisir quelque chose")
         }
+        
         
     })
     
 }
-
 
 
 /*******************************
@@ -82,7 +111,6 @@ function lencerJeu(){
     
     for(let y = 0; y < optionbtnRadio.length; y++){
         
-
         //ici on est ecoute l'event change de btnRadio
         optionbtnRadio[y].addEventListener("change",(e)=>{
             
