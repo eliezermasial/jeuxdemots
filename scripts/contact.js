@@ -33,32 +33,31 @@ function desactivermessageErreur(){
 /*******************************
  * gestion de validation d'email
  *******************************/
-function validEmail(){
+const validEmail = function (){
 
-    email.addEventListener("change",()=>{
+    //on decrit l'expression reguliere pour que l'email soit valid
+    let emailRegexp = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g')
+
+    // on test expression reguliere de email
+    let testExpr = emailRegexp.test(email.value)
+
+    if(!testExpr){
         
-        //on decrit l'expression reguliere pour que l'email soit valid
-        let emailRegexp = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g')
+        messageemailNonvalid.innerHTML = "Adresse non valid"
+        messageemailNonvalid.style.color = "red"
+        
+        return false
 
-        // on test expression reguliere de email
-        let testExpr = emailRegexp.test(email.value)
+    } else {
+        messageemailNonvalid.innerHTML = "Adresse valide"
+        messageemailNonvalid.style.color = "green"
+        
+        return true
+    }
+    
+}
 
-        if(!testExpr){
-            messageemailNonvalid.innerHTML = "l'adresse non valid"
-            messageemailNonvalid.classList.add("msnonValid")
-            
-            return false
-
-        } else {
-            messageemailNonvalid.textContent = "Adresse valide"
-            messageemailNonvalid.classList.remove("msnonValid")
-            messageemailNonvalid.classList.add("msValid")
-            email.value = ""
-            
-            return true
-        }
-
-    })
+function validPassword (){
     
 }
 
@@ -71,21 +70,21 @@ function afficherbtnPartager(){
 
     btnPartager.addEventListener("click",(e)=>{
         
-
         let formulairePartager = document.querySelector(" .popupBackground")
+
         if(btnPartager.click){
             formulairePartager.classList.remove("popupBackground")
             formulairePartager.classList.add("affichagePopup")
-
-            validEmail()
 
             body.addEventListener("dblclick",()=>{
                 formulairePartager.classList.remove("affichagePopup")
                 formulairePartager.classList.add("popupBackground")
             })
+
+            email.addEventListener("change",validEmail)
+            
         }
 
-     
     })
     
 }
