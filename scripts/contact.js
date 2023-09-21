@@ -30,14 +30,25 @@ function desactivermessageErreur(){
     )
 }
 
-/****************
- * gestion de validation mam
- */
-const validNam = function (params) {
-    
+/***************************
+ * gestion de validation name
+ ***************************/
+const validName = function () {
+ 
+    let messageName = document.getElementById("labelname")
+  
+    if(inputname.value.length < 3) {
+        messageName.innerHTML = "le nom est court"
+        messageName.style.color = "red"
+    } else{
+        messageName.style.color = "green"
+        messageName.innerHTML = "valid"
+        
+    }
+        
 }
 
-/*******************************
+/********************************
  * gestion de validation d'email
  *******************************/
 const validEmail = function (){
@@ -64,13 +75,13 @@ const validEmail = function (){
     
 }
 
-/*******************************************
+/********************************************
  * gestion de validation de password of mail
  *******************************************/
 const validPassword = function  (){
     let messagePassword = document.getElementById("labelpassword")
     let valid = false
-
+    
     switch (password.value.length < 5) {
 
         case /[A-Z]/.test(password.value): //au moins une lettre MAJ
@@ -126,6 +137,8 @@ function afficherbtnPartager(){
                 formulairePartager.classList.add("popupBackground")
             })
 
+            //evenement qui execute fonction validName
+            inputname.addEventListener("change",validName)
             //l'evenement qui execute la fonction validEmail
             email.addEventListener("change",validEmail)
 
@@ -182,18 +195,19 @@ function afficherMots() {
     
 }
 
+
 /*****************************************
  * gestion event submit dans la formulaire
  ****************************************/
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
-    
-    if(validEmail(form.Email) && validPassword(form.password)) {
+    if(validEmail(form.Email) && validPassword(form.password) && validName(form.inputname)) {
 
         form.submit()
+        form.disabled = true
     } 
+  
 })
-
 
 /*******************************
  * gestion du jeu
