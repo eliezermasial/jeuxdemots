@@ -211,6 +211,13 @@ footer {
     border: 1px solid red !important;
 }
 
+.msnonValid{
+    color: red;
+}
+.msValid{
+    color: green;
+}
+
 /**
   * Gestion des popups
   */

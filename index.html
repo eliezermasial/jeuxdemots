@@ -61,12 +61,12 @@
     <div class="popupBackground">
         <div class="popup">
             <div>Partagez votre score</div>
-            <form novalidate>
+            <form novalidate id="form">
                 <label for="nom">Votre nom</label>
                 <input type="text" id="nom" name="nom" placeholder="Votre nom">
-                <label for="email">Avec qui voulez-vous partager votre score ?</label>
+                <label for="email" id="labelEmail">Avec qui voulez-vous partager votre score ?</label>
                 <input type="email" id="email" name="email" placeholder="nom@domaine.com">
-                <button id="btnEnvoyerMail">Envoyer</button>
+                <button type="submit" id="btnEnvoyerMail">Envoyer</button>
             </form>
         </div>
     </div>

@@ -1,4 +1,5 @@
-let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]') 
+let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]')
+let messageemailNonvalid = document.getElementById("labelEmail")
 
 
 //les variables a incrumenter
@@ -14,21 +15,51 @@ function afficherScore(){
 //affichager message d'erreur
 function affichermessageErreur(){
     let messageError = document.getElementById('msError')
-
     return (
         inputEcriture.classList.add("mserrorInput"),
         messageError.classList.add("affichermsError")
-        
     )
 }
+
 //desactiver le message d'erreur
 function desactivermessageErreur(){
     let messageError = document.getElementById('msError')
-
     return (
         messageError.classList.remove("affichermsError"),
         inputEcriture.classList.remove("mserrorInput")
     )
+}
+
+/*******************************
+ * gestion de validation d'email
+ *******************************/
+function validEmail(){
+
+    email.addEventListener("change",()=>{
+        
+        //on decrit l'expression reguliere pour que l'email soit valid
+        let emailRegexp = new RegExp ('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g')
+
+        // on test expression reguliere de email
+        let testExpr = emailRegexp.test(email.value)
+
+        if(!testExpr){
+            messageemailNonvalid.innerHTML = "l'adresse non valid"
+            messageemailNonvalid.classList.add("msnonValid")
+            
+            return false
+
+        } else {
+            messageemailNonvalid.textContent = "Adresse valide"
+            messageemailNonvalid.classList.remove("msnonValid")
+            messageemailNonvalid.classList.add("msValid")
+            email.value = ""
+            
+            return true
+        }
+
+    })
+    
 }
 
 /*****************************************************************************************
@@ -39,22 +70,25 @@ function afficherbtnPartager(){
     btnPartager.style.display = 'block'
 
     btnPartager.addEventListener("click",(e)=>{
+        
 
         let formulairePartager = document.querySelector(" .popupBackground")
         if(btnPartager.click){
             formulairePartager.classList.remove("popupBackground")
             formulairePartager.classList.add("affichagePopup")
 
+            validEmail()
+
             body.addEventListener("dblclick",()=>{
                 formulairePartager.classList.remove("affichagePopup")
                 formulairePartager.classList.add("popupBackground")
             })
         }
+
      
     })
     
 }
-
 
 /*************************************************
 * gestion des mots
@@ -83,6 +117,7 @@ function afficherMots() {
                     inputEcriture.disabled = true
                     btnValider.disabled = true
                     afficherbtnPartager()
+
                 }
     
             } else{
@@ -95,10 +130,21 @@ function afficherMots() {
             return alert("veuillez saisir quelque chose")
         }
         
-        
     })
     
 }
+
+/*****************************************
+ * gestion event submit dans la formulaire
+ ****************************************/
+form.addEventListener('submit',(e)=>{
+    e.preventDefault()
+    
+    if(validEmail(form.Email)) {
+
+        form.submit()
+    } 
+})
 
 
 /*******************************
