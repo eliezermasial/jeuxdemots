@@ -1,5 +1,5 @@
 let optionbtnRadio = document.querySelectorAll('input[name="optionSource"]')
-let messageemailNonvalid = document.getElementById("labelEmail")
+let messageEmail = document.getElementById("labelEmail")
 
 
 //les variables a incrumenter
@@ -30,6 +30,13 @@ function desactivermessageErreur(){
     )
 }
 
+/****************
+ * gestion de validation mam
+ */
+const validNam = function (params) {
+    
+}
+
 /*******************************
  * gestion de validation d'email
  *******************************/
@@ -42,23 +49,61 @@ const validEmail = function (){
     let testExpr = emailRegexp.test(email.value)
 
     if(!testExpr){
-        
-        messageemailNonvalid.innerHTML = "Adresse non valid"
-        messageemailNonvalid.style.color = "red"
+
+        messageEmail.innerHTML = "Adresse non valid"
+        messageEmail.style.color = "red"
         
         return false
 
     } else {
-        messageemailNonvalid.innerHTML = "Adresse valide"
-        messageemailNonvalid.style.color = "green"
+        messageEmail.innerHTML = "Adresse valide"
+        messageEmail.style.color = "green"
         
         return true
     }
     
 }
 
-function validPassword (){
-    
+/*******************************************
+ * gestion de validation de password of mail
+ *******************************************/
+const validPassword = function  (){
+    let messagePassword = document.getElementById("labelpassword")
+    let valid = false
+
+    switch (password.value.length < 5) {
+
+        case /[A-Z]/.test(password.value): //au moins une lettre MAJ
+            messagePassword.innerHTML = "password no valid veuillez saisir 1/Maj"
+            messagePassword.style.color = "red"
+            break;
+
+        case /[a-z]/.test(password.value): //au moins une lettre mini
+            messagePassword.innerHTML = "password no valid veuillez saisir 1/min"
+            messagePassword.style.color = "red"
+            break;
+
+        case /[0-9]/.test(password.value): //au moins un chiffre
+            messagePassword.innerHTML = "password no valid veuillez saisir 1/chiffre"
+            messagePassword.style.color = "red"
+            break;  
+
+        default:
+            
+            messagePassword.innerHTML = "password valid"
+            messagePassword.style.color = "green"
+            console.log("bravot")
+            valid = true
+            break;
+
+    }
+
+    if(valid){
+        return true
+    } else{
+        return false
+    }
+
 }
 
 /*****************************************************************************************
@@ -81,7 +126,11 @@ function afficherbtnPartager(){
                 formulairePartager.classList.add("popupBackground")
             })
 
+            //l'evenement qui execute la fonction validEmail
             email.addEventListener("change",validEmail)
+
+            //evenement qui execute la fonction validpassword
+            password.addEventListener("change",validPassword)
             
         }
 
@@ -139,7 +188,7 @@ function afficherMots() {
 form.addEventListener('submit',(e)=>{
     e.preventDefault()
     
-    if(validEmail(form.Email)) {
+    if(validEmail(form.Email) && validPassword(form.password)) {
 
         form.submit()
     } 
