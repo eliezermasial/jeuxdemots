@@ -30,6 +30,14 @@ function desactivermessageErreur(){
     )
 }
 
+//chronomettre du jeu
+const timer = ()=>{
+ let data = 1
+ const labelChrono = document.getElementById("labelChrono").innerHTML = data
+
+
+}
+
 /***************************
  * gestion de validation name
  ***************************/
@@ -216,6 +224,7 @@ form.addEventListener('submit',(e)=>{
 function lencerJeu(){
     afficherMots()
     afficherScore(score)
+    
     
     for(let y = 0; y < optionbtnRadio.length; y++){
         
